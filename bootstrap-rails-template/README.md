@@ -1,24 +1,11 @@
-# README
+# 1 - Rails Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Create a rails Project
 
-Things you may want to cover:
+`rails new app_name`
 
-* Ruby version
+## Create landing controller
+`rails g controller home index`
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Change the default URL in
+`root 'home#index'`
