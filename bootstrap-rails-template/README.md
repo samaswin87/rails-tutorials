@@ -51,6 +51,9 @@ module.exports = environment
 `import '../stylesheets/application'`
 
 
+*Import bootstrap into the app/javascript/stylesheets/application.scss file.*
+@import 'bootstrap'
+
 # 4 - Start rails server
 
 
