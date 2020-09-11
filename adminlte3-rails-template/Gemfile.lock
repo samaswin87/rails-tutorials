@@ -198,6 +198,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionview (>= 6.0.3.3)
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
