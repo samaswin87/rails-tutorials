@@ -1,11 +1,12 @@
 module API
   module V1
     class RecordsController < ApplicationController
+      before_action :autherize_access_request!
       before_action :set_record, only: [:show, :update, :destroy]
 
       # GET /records
       def index
-        @records = Record.all
+        @records = current_user.records.all
 
         render json: @records
       end
@@ -43,12 +44,12 @@ module API
       private
         # Use callbacks to share common setup or constraints between actions.
         def set_record
-          @record = Record.find(params[:id])
+          @record = current_user.records.find(params[:id])
         end
 
         # Only allow a trusted parameter "white list" through.
         def record_params
-          params.require(:record).permit(:title, :year, :artist_id, :user_id)
+          params.require(:record).permit(:title, :year, :artist_id)
         end
     end
   end
