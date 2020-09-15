@@ -2,7 +2,7 @@
   <div class="max-w-sm m-auto my-8">
     <div class="border p-10 border-gray-400 shadow rounded">
       <h3 class="text-2xl mb-6 text-gray-800">Sign Up</h3>
-      <form @submit.prevent="signin">
+      <form @submit.prevent="signup">
         <div class="text-red" v-if="error">{{ error }}</div>
 
         <div class="mb-6">
@@ -17,7 +17,7 @@
 
         <div class="mb-6">
           <label for="password" class="label">Password Confirmation</label>
-          <input type="password" v-model="password" class="input" id="password_confirmation" placeholder="Password Confirmation">
+          <input type="password" v-model="password_confirmation" class="input" id="password_confirmation" placeholder="Password Confirmation">
         </div>
 
         <button type="submit" class="font-sans font-bold px-4 rounded cursor-pointer no-underline bg-green-500 hover:bg-green-600 block w-full py-4 text-white items-center justify-center">Sign Up</button>
@@ -39,46 +39,38 @@ export default {
       error: ''
     }
   },
-
   created () {
-    this.checkSignedIn()
+    this.checkedSignedIn()
   },
-
   updated () {
-    this.checkSignedIn()
+    this.checkedSignedIn()
   },
-
   methods: {
-    signin () {
+    signup () {
       this.$http.plain.post('/signup', { email: this.email, password: this.password, password_confirmation: this.password_confirmation })
-        .then(response => this.signinSussessful(response))
-        .catch(error => this.signinFailed(error))
+        .then(response => this.signupSuccessful(response))
+        .catch(error => this.signupFailed(error))
     },
-
-    signinSussessful (response) {
+    signupSuccessful (response) {
       if (!response.data.csrf) {
-        this.signinFailed(response)
+        this.signupFailed(response)
         return
       }
-
       localStorage.csrf = response.data.csrf
       localStorage.signedIn = true
       this.error = ''
       this.$router.replace('/records')
     },
-
-    signinFailed (error) {
+    signupFailed (error) {
       this.error = (error.response && error.response.data && error.response.data.error) || 'Something went wrong'
       delete localStorage.csrf
       delete localStorage.signedIn
     },
-
-    checkSignedIn () {
+    checkedSignedIn () {
       if (localStorage.signedIn) {
         this.$router.replace('/records')
       }
     }
   }
-
 }
 </script>
