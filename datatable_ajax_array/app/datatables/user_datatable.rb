@@ -6,15 +6,17 @@ class UserDatatable < AjaxDatatablesRails::ActiveRecord
     super
   end
 
+  # assume columns are also custom
+  def custom_columns
+    [:first_name, :last_name, :email]
+  end
+
   def view_columns
-    # Declare strings in this format: ModelName.column_name
-    # or in aliased_join_table.column_name format
-    @view_columns ||= {
-      id:         { source: 'Record.id' },
-      first_name: { source: 'Record.first_name', searchable: false, orderable: false},
-      last_name:  { source: 'Record.last_name', searchable: false, orderable: false },
-      email:      { source: 'Record.email', searchable: false, orderable: false },
-    }
+    view_columns_hash = {id: { source: 'Record.id' } }
+    custom_columns.each do |column|
+      view_columns_hash[column] = { source: 'Record.#{column}', searchable: false, orderable: false }
+    end
+    @view_columns ||= view_columns_hash
   end
 
   def data
