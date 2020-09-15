@@ -4,12 +4,14 @@ class RecordAttributeProvider
     @model = model
   end
 
+  # Columns from external source
   def call
-    [
-      ActiveDynamic::AttributeDefinition.new('first_name'),
-      ActiveDynamic::AttributeDefinition.new('last_name'),
-      ActiveDynamic::AttributeDefinition.new('email')
-    ]
+    ['first_name', 'last_name', 'email'].map do |column|
+      ActiveDynamic::AttributeDefinition.new(column, datatype: ActiveDynamic::DataType::String)
+    end
   end
 
+  private
+
+  attr_reader :model
 end

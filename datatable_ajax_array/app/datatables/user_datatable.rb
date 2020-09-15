@@ -21,13 +21,15 @@ class UserDatatable < AjaxDatatablesRails::ActiveRecord
 
   def data
     records.map do |record|
-      {
+      record_hash = {
         id:         record.id,
-        first_name: record.first_name,
-        last_name:  record.last_name,
-        email:      record.email,
         DT_RowId:   record.id
       }
+
+      custom_columns.each do |column|
+        record_hash[column] = record.send(column.to_s)
+      end
+      record_hash
     end
   end
 
