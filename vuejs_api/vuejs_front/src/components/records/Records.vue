@@ -102,6 +102,7 @@ export default {
       editedRecord: ''
     }
   },
+
   created () {
     if (!localStorage.signedIn) {
       this.$router.replace('/')
@@ -114,10 +115,12 @@ export default {
         .catch(error => this.setError(error, 'Something went wrong'))
     }
   },
+
   methods: {
     setError (error, text) {
       this.error = (error.response && error.response.data && error.response.data.error) || text
     },
+
     getArtist (record) {
       const recordArtistValues = this.artists.filter(artist => artist.id === record.artist_id)
       let artist
@@ -126,6 +129,7 @@ export default {
       })
       return artist
     },
+
     addRecord () {
       const value = this.newRecord
       if (!value) {
@@ -138,6 +142,7 @@ export default {
         })
         .catch(error => this.setError(error, 'Cannot create record'))
     },
+
     removeRecord (record) {
       this.$http.secured.delete(`/api/v1/records/${record.id}`)
         .then(response => {
@@ -145,9 +150,11 @@ export default {
         })
         .catch(error => this.setError(error, 'Cannot delete record'))
     },
+
     editRecord (record) {
       this.editedRecord = record
     },
+
     updateRecord (record) {
       this.editedRecord = ''
       this.$http.secured.patch(`/api/v1/records/${record.id}`, { record: { title: record.title, year: record.year, artist_id: record.artist } })

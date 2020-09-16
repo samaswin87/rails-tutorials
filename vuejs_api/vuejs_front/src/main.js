@@ -10,7 +10,7 @@ import './main.css'
 Vue.config.productionTip = false
 
 Vue.use(VueAxios, {
-  secure: securedAxiosInstance,
+  secured: securedAxiosInstance,
   plain: plainAxiosInstance
 })
 /* eslint-disable no-new */

@@ -1,7 +1,7 @@
 module API
   module V1
     class ArtistsController < ApplicationController
-      before_action :autherize_access_request!, except: [:show, :index]
+      before_action :authorize_access_request!, except: [:show, :index]
       before_action :set_artist, only: [:show, :update, :destroy]
 
       # GET /artists
