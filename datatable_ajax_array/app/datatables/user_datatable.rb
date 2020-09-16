@@ -12,7 +12,7 @@ class UserDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def view_columns
-    view_columns_hash = {id: { source: 'Record.id' } }
+    view_columns_hash = {id: { source: 'Record.id', searchable: false } }
     custom_columns.each do |column|
       view_columns_hash[column] = { source: 'Record.#{column}', searchable: false, orderable: false }
     end
@@ -33,6 +33,7 @@ class UserDatatable < AjaxDatatablesRails::ActiveRecord
     end
   end
 
+  # Solved the search association issue with https://stackoverflow.com/a/63572159
   def get_raw_records
     records = Record.all
     order = params.fetch('order', {})
@@ -42,6 +43,12 @@ class UserDatatable < AjaxDatatablesRails::ActiveRecord
              .where(active_dynamic_attributes: { name: column['data'] })
              .order("active_dynamic_attributes.value #{order['0']['dir']}")
     end
+
+    search = params.fetch('search', {})
+    if search && search['value'].present?
+      records = records.joins(:active_dynamic_attributes).where(ActiveDynamicAttribute.arel_table[:value].matches("%#{search['value']}%"))
+    end
+
     records
   end
 
