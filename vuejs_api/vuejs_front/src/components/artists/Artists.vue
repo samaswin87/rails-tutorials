@@ -11,7 +11,6 @@
       </div>
       <input type="submit" value="Add Artist" class="font-sans font-bold px-4 rounded cursor-pointer no-underline bg-green-500 hover:bg-green-600 block w-full py-4 text-white-500 items-center justify-center" />
     </form>
--500
     <hr class="border border-gray-400 my-6" />
 
     <ul class="list-reset mt-4">
