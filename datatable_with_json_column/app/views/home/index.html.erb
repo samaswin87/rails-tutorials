@@ -1,0 +1,45 @@
+<div class="container">
+  <h1>Data Table with Custom Session Columns and Data</h1>
+
+  <div class="card">
+    <%= form_with(url: "home/create", method: "create") do %>
+      <%= submit_tag("Add Record", class: 'btn btn-primary') %>
+    <% end %>
+    <br/>
+  </div>
+  <br/>
+  <table class="table table-bordered" id="users-datatable" data-source="<%= home_records_path(format: :json) %>">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#users-datatable').DataTable({
+      "processing": true,
+      "serverSide": true,
+      "ajax": {
+        "url": $('#users-datatable').data('source')
+      },
+      "pagingType": "full_numbers",
+      "columns": [
+        {"data": "id"},
+        {"data": "name"},
+        {"data": "email"},
+        {"data": "phone"},
+      ]
+      // pagingType is optional, if you want full pagination controls.
+      // Check dataTables documentation to learn more about
+      // available options.
+    });
+  });
+</script>
