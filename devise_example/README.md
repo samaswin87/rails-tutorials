@@ -1,24 +1,10 @@
-# README
+# Gems Used
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## bootstrap
+`https://github.com/twbs/bootstrap-rubygem/tree/4.5-stable`
 
-Things you may want to cover:
+## Font Awesome
+`https://github.com/bokmann/font-awesome-rails`
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Example Template
+`https://getbootstrap.com/docs/4.0/examples/dashboard/`
