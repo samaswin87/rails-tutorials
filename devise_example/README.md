@@ -6,5 +6,8 @@
 ## Font Awesome
 `https://github.com/bokmann/font-awesome-rails`
 
+## Devise
+`https://github.com/heartcombo/devise`
+
 # Example Template
 `https://getbootstrap.com/docs/4.0/examples/dashboard/`
