@@ -17,3 +17,5 @@
 ## Alert
 `https://stackoverflow.com/a/45125912/2634405`
 
+## JS assert
+`https://stackoverflow.com/a/36032861`
