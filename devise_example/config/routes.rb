@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations'
   }
 
+  resources :users
   resources :books
   root to: 'books#index'
 end

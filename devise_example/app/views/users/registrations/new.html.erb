@@ -1,7 +1,7 @@
 <div class="text-center">
   <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
   <h2 class="h3 mb-3 font-weight-normal">Sign up</h2>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-signin" }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: user_registration_path, html: { class: "form-signin" }) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
 
     <%= f.label :email, class: "sr-only" %>
