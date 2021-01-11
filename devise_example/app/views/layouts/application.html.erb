@@ -18,6 +18,7 @@
     <% flash.each do |name, msg| %>
       <div class="message">
         <% flash.each do |message_type, message| %>
+        <%- next unless ['alert', 'notice'].include?(message_type)  %>
         <div class="alert alert-<%= flash_class_name(message_type) %> alert-dismissable">
             <span><%= message %></span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
