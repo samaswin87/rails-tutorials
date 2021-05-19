@@ -4,7 +4,7 @@ class Article < ApplicationRecord
 
   def custom_fields
     if super.is_a?(String)
-      YAML.load(super)
+      return YAML.load(super)
     end
     super
   end
